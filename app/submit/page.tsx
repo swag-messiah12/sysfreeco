@@ -31,7 +31,7 @@ function FieldError({ message }: { message?: string }) {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="text-xs text-red-400 mt-1"
+          className="text-xs text-red-500 mt-1"
         >
           {message}
         </motion.p>
@@ -74,7 +74,7 @@ export default function SubmitPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#f5f5f7]">
       <Header />
 
       <main className="flex-1 flex items-center justify-center px-4 py-16">
@@ -86,31 +86,31 @@ export default function SubmitPage() {
                 key="success"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass-card rounded-2xl p-10 text-center border border-emerald-500/20 bg-emerald-500/5"
+                className="glass-card rounded-2xl p-10 text-center border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50"
               >
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", delay: 0.1 }}
-                  className="w-14 h-14 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mx-auto mb-5"
+                  className="w-14 h-14 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center mx-auto mb-5"
                 >
-                  <CheckCircle size={28} className="text-emerald-400" />
+                  <CheckCircle size={28} className="text-emerald-600" />
                 </motion.div>
-                <h2 className="text-2xl font-bold text-zinc-100 mb-2">Thanks for the tip!</h2>
-                <p className="text-zinc-400 text-sm mb-7">
+                <h2 className="text-2xl font-bold text-zinc-900 mb-2">Thanks for the tip!</h2>
+                <p className="text-zinc-500 text-sm mb-7">
                   We&apos;ll scan their website and update the score. If they turn out to be
                   legit, they&apos;ll show up on the map soon.
                 </p>
                 <div className="flex gap-3 justify-center">
                   <Link href="/explore">
-                    <Button className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold">
+                    <Button className="bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 text-white font-semibold border-0">
                       View the map
                     </Button>
                   </Link>
                   <Button
                     variant="outline"
                     onClick={() => setSubmitted(false)}
-                    className="border-white/12 text-zinc-300 hover:bg-white/5"
+                    className="border-zinc-300 text-zinc-700 hover:bg-white bg-white/70"
                   >
                     Submit another
                   </Button>
@@ -126,12 +126,12 @@ export default function SubmitPage() {
                 <div className="mb-8">
                   <Link
                     href="/explore"
-                    className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 transition-colors mb-6"
+                    className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 transition-colors mb-6"
                   >
                     <ArrowLeft size={12} />
                     Back to map
                   </Link>
-                  <h1 className="text-3xl font-bold text-zinc-100">Submit a restaurant</h1>
+                  <h1 className="text-3xl font-bold text-zinc-900">Submit a restaurant</h1>
                   <p className="text-zinc-500 text-sm mt-2">
                     Know a spot that sources independently? Add it and we&apos;ll scan it.
                   </p>
@@ -143,47 +143,47 @@ export default function SubmitPage() {
                 >
                   {/* Name */}
                   <div>
-                    <Label htmlFor="name" className="text-xs text-zinc-400 mb-1.5 block">
-                      Restaurant name <span className="text-red-400">*</span>
+                    <Label htmlFor="name" className="text-xs text-zinc-600 font-medium mb-1.5 block">
+                      Restaurant name <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="name"
                       placeholder="e.g. Farmhouse Tavern"
                       {...register("name")}
-                      className="bg-white/5 border-white/10 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-emerald-500/50"
+                      className="bg-zinc-50 border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-emerald-500/40"
                     />
                     <FieldError message={errors.name?.message} />
                   </div>
 
                   {/* Address */}
                   <div>
-                    <Label htmlFor="address" className="text-xs text-zinc-400 mb-1.5 block">
-                      Address <span className="text-red-400">*</span>
+                    <Label htmlFor="address" className="text-xs text-zinc-600 font-medium mb-1.5 block">
+                      Address <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="address"
                       placeholder="e.g. 1627 Dupont St, Toronto, ON"
                       {...register("address")}
-                      className="bg-white/5 border-white/10 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-emerald-500/50"
+                      className="bg-zinc-50 border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-emerald-500/40"
                     />
                     <FieldError message={errors.address?.message} />
                   </div>
 
                   {/* City */}
                   <div>
-                    <Label className="text-xs text-zinc-400 mb-1.5 block">
-                      City <span className="text-red-400">*</span>
+                    <Label className="text-xs text-zinc-600 font-medium mb-1.5 block">
+                      City <span className="text-red-500">*</span>
                     </Label>
                     <Select onValueChange={(v) => setValue("city", v as SubmissionInput["city"])}>
-                      <SelectTrigger className="bg-white/5 border-white/10 text-zinc-200 focus:ring-emerald-500/50">
+                      <SelectTrigger className="bg-zinc-50 border-zinc-200 text-zinc-900 focus:ring-emerald-500/40">
                         <SelectValue placeholder="Select a city" />
                       </SelectTrigger>
-                      <SelectContent className="bg-zinc-900 border-white/10">
+                      <SelectContent className="bg-white border-zinc-200">
                         {CITIES.map((c) => (
                           <SelectItem
                             key={c}
                             value={c}
-                            className="text-zinc-300 focus:bg-emerald-500/10 focus:text-emerald-400"
+                            className="text-zinc-700 focus:bg-emerald-50 focus:text-emerald-700"
                           >
                             {c}
                           </SelectItem>
@@ -195,7 +195,7 @@ export default function SubmitPage() {
 
                   {/* Website */}
                   <div>
-                    <Label htmlFor="website" className="text-xs text-zinc-400 mb-1.5 block">
+                    <Label htmlFor="website" className="text-xs text-zinc-600 font-medium mb-1.5 block">
                       Website URL
                     </Label>
                     <Input
@@ -203,14 +203,14 @@ export default function SubmitPage() {
                       placeholder="https://restaurant.ca"
                       type="url"
                       {...register("website")}
-                      className="bg-white/5 border-white/10 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-emerald-500/50"
+                      className="bg-zinc-50 border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-emerald-500/40"
                     />
                     <FieldError message={errors.website?.message} />
                   </div>
 
                   {/* Phone */}
                   <div>
-                    <Label htmlFor="phone" className="text-xs text-zinc-400 mb-1.5 block">
+                    <Label htmlFor="phone" className="text-xs text-zinc-600 font-medium mb-1.5 block">
                       Phone (optional)
                     </Label>
                     <Input
@@ -218,13 +218,13 @@ export default function SubmitPage() {
                       placeholder="(416) 555-0100"
                       type="tel"
                       {...register("phone")}
-                      className="bg-white/5 border-white/10 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-emerald-500/50"
+                      className="bg-zinc-50 border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-emerald-500/40"
                     />
                   </div>
 
                   {/* Notes */}
                   <div>
-                    <Label htmlFor="notes" className="text-xs text-zinc-400 mb-1.5 block">
+                    <Label htmlFor="notes" className="text-xs text-zinc-600 font-medium mb-1.5 block">
                       Why do you think they source independently? (optional)
                     </Label>
                     <Textarea
@@ -232,14 +232,14 @@ export default function SubmitPage() {
                       placeholder="e.g. They mention 100km Foods on their menu, all produce is from local farms..."
                       {...register("notes")}
                       rows={3}
-                      className="bg-white/5 border-white/10 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-emerald-500/50 resize-none"
+                      className="bg-zinc-50 border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-emerald-500/40 resize-none"
                     />
                     <FieldError message={errors.notes?.message} />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <Label htmlFor="email" className="text-xs text-zinc-400 mb-1.5 block">
+                    <Label htmlFor="email" className="text-xs text-zinc-600 font-medium mb-1.5 block">
                       Your email (optional — for follow-up)
                     </Label>
                     <Input
@@ -247,7 +247,7 @@ export default function SubmitPage() {
                       placeholder="you@example.com"
                       type="email"
                       {...register("email")}
-                      className="bg-white/5 border-white/10 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-emerald-500/50"
+                      className="bg-zinc-50 border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-emerald-500/40"
                     />
                     <FieldError message={errors.email?.message} />
                   </div>
@@ -259,7 +259,7 @@ export default function SubmitPage() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-sm text-red-400"
+                        className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600"
                       >
                         {serverError}
                       </motion.div>
@@ -269,7 +269,7 @@ export default function SubmitPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold shadow-lg shadow-emerald-500/20 disabled:opacity-60"
+                    className="w-full gap-2 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 text-white font-semibold shadow-md shadow-emerald-100 border-0 disabled:opacity-60"
                   >
                     {isSubmitting ? (
                       <>
@@ -284,7 +284,7 @@ export default function SubmitPage() {
                     )}
                   </Button>
 
-                  <p className="text-xs text-zinc-600 text-center">
+                  <p className="text-xs text-zinc-400 text-center">
                     Submissions are reviewed before appearing on the map.
                     We respect your privacy — your email will never be shared.
                   </p>
