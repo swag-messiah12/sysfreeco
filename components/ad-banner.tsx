@@ -10,6 +10,7 @@ interface Props {
 }
 
 const CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+const IS_DEV = process.env.NODE_ENV === "development";
 
 export default function AdBanner({
   slot,
@@ -18,7 +19,7 @@ export default function AdBanner({
   label = "Advertisement",
 }: Props) {
   useEffect(() => {
-    if (!CLIENT) return;
+    if (!CLIENT || IS_DEV) return;
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
@@ -33,8 +34,16 @@ export default function AdBanner({
         {label}
       </p>
 
-      {CLIENT ? (
-        /* Real AdSense unit — shown in production once CLIENT is set */
+      {IS_DEV || !CLIENT ? (
+        /* Dev placeholder — always shown locally so layout is visible */
+        <div className="flex items-center justify-center bg-zinc-50 border border-dashed border-zinc-300 rounded-xl h-full min-h-[90px]">
+          <div className="text-center">
+            <p className="text-xs font-semibold text-zinc-400">Ad Slot</p>
+            <p className="text-[10px] text-zinc-300 mt-0.5">{slot}</p>
+          </div>
+        </div>
+      ) : (
+        /* Real AdSense unit — only in production with CLIENT set */
         <ins
           className="adsbygoogle block"
           style={{ display: "block" }}
@@ -43,14 +52,6 @@ export default function AdBanner({
           data-ad-format={format}
           data-full-width-responsive="true"
         />
-      ) : (
-        /* Dev placeholder — looks like an ad slot so layout is visible */
-        <div className="flex items-center justify-center bg-zinc-50 border border-dashed border-zinc-200 rounded-xl h-full min-h-[100px] text-zinc-400">
-          <div className="text-center">
-            <p className="text-xs font-medium text-zinc-500">Ad Slot</p>
-            <p className="text-[10px] text-zinc-400 mt-0.5">Set NEXT_PUBLIC_ADSENSE_CLIENT to activate</p>
-          </div>
-        </div>
       )}
     </div>
   );
