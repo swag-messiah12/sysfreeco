@@ -34,8 +34,15 @@ export type CityFilter =
   | "Toronto"
   | "Hamilton"
   | "Cambridge"
-  | "Mississauga"
-  | "Brampton";
+  | "Ottawa"
+  | "Vancouver"
+  | "Calgary"
+  | "Edmonton"
+  | "Montreal"
+  | "Quebec City"
+  | "Winnipeg"
+  | "Halifax"
+  | "Victoria";
 
 export type VerdictFilter =
   | "all"

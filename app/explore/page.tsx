@@ -30,7 +30,20 @@ const VERDICT_TABS: { value: VerdictFilter; label: string; score: number }[] = [
   { value: "sysco",       label: "Sysco",       score: -5   },
 ];
 
-const CITIES: CityFilter[] = ["all", "Toronto", "Hamilton", "Cambridge"];
+const CITIES: { value: CityFilter; label: string }[] = [
+  { value: "all",          label: "All Canada" },
+  { value: "Toronto",      label: "Toronto" },
+  { value: "Hamilton",     label: "Hamilton" },
+  { value: "Ottawa",       label: "Ottawa" },
+  { value: "Vancouver",    label: "Vancouver" },
+  { value: "Calgary",      label: "Calgary" },
+  { value: "Edmonton",     label: "Edmonton" },
+  { value: "Montreal",     label: "Montréal" },
+  { value: "Quebec City",  label: "Québec City" },
+  { value: "Winnipeg",     label: "Winnipeg" },
+  { value: "Halifax",      label: "Halifax" },
+  { value: "Victoria",     label: "Victoria" },
+];
 
 export default function ExplorePage() {
   const [mounted, setMounted] = useState(false);
@@ -106,17 +119,17 @@ export default function ExplorePage() {
 
               {/* City pills */}
               <div className="flex gap-1 overflow-x-auto scrollbar-none">
-                {CITIES.map((c) => (
+                {CITIES.map(({ value, label }) => (
                   <button
-                    key={c}
-                    onClick={() => setFilters((f) => ({ ...f, city: c }))}
+                    key={value}
+                    onClick={() => setFilters((f) => ({ ...f, city: value }))}
                     className={`shrink-0 px-2 py-1 rounded-md text-xs transition-colors ${
-                      filters.city === c
+                      filters.city === value
                         ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
                         : "text-zinc-500 hover:text-zinc-300 border border-white/8"
                     }`}
                   >
-                    {c === "all" ? "All cities" : c}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -222,6 +235,7 @@ export default function ExplorePage() {
             restaurants={filtered}
             selected={selected}
             onSelect={handleSelect}
+            city={filters.city}
           />
 
           {/* Tip overlay */}
