@@ -30,8 +30,9 @@ export const metadata: Metadata = {
     siteName: "sysFREEco",
   },
   robots: { index: true, follow: true },
-  verification: {
-    google: "ca-pub-7259657349367819",
+  // Correct AdSense meta tag — visible to Google crawler in raw HTML
+  other: {
+    "google-adsense-account": "ca-pub-7259657349367819",
   },
 };
 
@@ -43,12 +44,14 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7259657349367819"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
+      <head>
+        {/* AdSense script — beforeInteractive ensures it's in the initial HTML */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7259657349367819"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-screen bg-background text-foreground">
         {children}
       </body>
