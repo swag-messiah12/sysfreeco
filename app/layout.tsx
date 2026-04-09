@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     siteName: "sysFREEco",
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "ca-pub-7259657349367819",
+  },
 };
 
 export default function RootLayout({
