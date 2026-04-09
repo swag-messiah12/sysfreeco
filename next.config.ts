@@ -24,14 +24,16 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      // Next.js needs unsafe-inline and unsafe-eval in dev
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // Next.js needs unsafe-inline/eval in dev; AdSense scripts in prod
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://adservice.google.com",
       // Leaflet injects inline styles
       "style-src 'self' 'unsafe-inline'",
-      // OSM tile images + own assets + data URIs for Leaflet icons
-      "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://tile.openstreetmap.org",
-      // Supabase API calls + OSM tile fetches
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.tile.openstreetmap.org",
+      // Map tile images + own assets + data URIs for Leaflet icons
+      "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://*.googlesyndication.com https://*.doubleclick.net",
+      // Supabase API calls + tile fetches + AdSense
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://pagead2.googlesyndication.com https://*.googlesyndication.com",
+      // AdSense frames
+      "frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
       // Fonts from Next.js static
       "font-src 'self' data:",
       // Block iframes entirely

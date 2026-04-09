@@ -7,7 +7,7 @@ function Shimmer({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "rounded bg-white/6 animate-pulse",
+        "rounded bg-zinc-200/80 animate-pulse",
         className
       )}
     />
@@ -17,7 +17,7 @@ function Shimmer({ className }: { className?: string }) {
 // ─── Single restaurant card skeleton ─────────────────────────────────────────
 export function RestaurantCardSkeleton() {
   return (
-    <div className="rounded-xl border border-white/8 bg-card/60 p-3.5 space-y-3">
+    <div className="rounded-xl border border-zinc-200 bg-white p-3.5 space-y-3">
       {/* Top row */}
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 space-y-1.5">
@@ -55,13 +55,13 @@ export function SidebarSkeleton({ count = 6 }: { count?: number }) {
 // ─── Map placeholder skeleton ─────────────────────────────────────────────────
 export function MapSkeleton() {
   return (
-    <div className="w-full h-full bg-zinc-950 flex items-center justify-center relative overflow-hidden">
+    <div className="w-full h-full bg-[#e8ecf1] flex items-center justify-center relative overflow-hidden">
       {/* Fake grid lines */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-30"
         style={{
           backgroundImage:
-            "linear-gradient(oklch(1 0 0 / 8%) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 8%) 1px, transparent 1px)",
+            "linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -84,7 +84,7 @@ export function MapSkeleton() {
             width: size,
             height: size,
             background: color,
-            opacity: 0.5,
+            opacity: 0.6,
             animationDelay: `${i * 0.15}s`,
           }}
         />
@@ -100,7 +100,7 @@ export function MapSkeleton() {
             />
           ))}
         </div>
-        <p className="text-xs text-zinc-600">Loading map…</p>
+        <p className="text-xs text-zinc-500 font-medium">Loading map…</p>
       </div>
     </div>
   );

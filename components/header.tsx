@@ -16,15 +16,18 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/8 glass">
+    <header className="sticky top-0 z-50 border-b border-black/8 glass">
       <div className="max-w-screen-xl mx-auto px-4 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-7 h-7 rounded-lg bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-shadow">
-            <Utensils size={14} className="text-black" />
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center shadow-sm shadow-emerald-200 group-hover:shadow-emerald-300 transition-shadow">
+            <Utensils size={14} className="text-white" />
           </div>
-          <span className="font-semibold text-sm tracking-tight">
-            sysFREE<span className="text-emerald-400">co</span>
+          <span className="font-semibold text-sm tracking-tight text-zinc-900">
+            sysFREE
+            <span className="bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent">
+              co
+            </span>
           </span>
         </Link>
 
@@ -40,8 +43,8 @@ export default function Header() {
                   className={cn(
                     "gap-1.5 text-xs font-medium transition-colors",
                     active
-                      ? "text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/15"
-                      : "text-zinc-400 hover:text-zinc-200"
+                      ? "text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200"
+                      : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100"
                   )}
                 >
                   <Icon size={13} />

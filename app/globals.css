@@ -40,65 +40,44 @@
   --radius-2xl: calc(var(--radius) * 1.8);
 }
 
-/* Light mode (unused — app is dark-first) */
+/* ─── Apple-style light theme (default) ──────────────────────────────────── */
 :root {
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Backgrounds */
+  --background: oklch(0.97 0.002 264);       /* #f5f5f7 */
+  --foreground: oklch(0.12 0.004 264);       /* #1d1d1f */
+  /* Card / surfaces */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.12 0.004 264);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.56 0.157 162.48);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.12 0 0);
+  /* Brand — emerald */
+  --primary: oklch(0.59 0.17 162);
+  --primary-foreground: oklch(1 0 0);
+  /* Neutral secondary */
+  --secondary: oklch(0.95 0.002 264);
+  --secondary-foreground: oklch(0.12 0 0);
+  /* Muted text */
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.43 0 0);       /* #6e6e73 */
+  /* Accent (used by shadcn for hover states) */
+  --accent: oklch(0.95 0 0);
+  --accent-foreground: oklch(0.12 0 0);
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.56 0.157 162.48);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.56 0.157 162.48);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.56 0.157 162.48);
-}
-
-/* Dark mode — default for sysFREEco */
-.dark {
-  --background: oklch(0.08 0.004 264);
-  --foreground: oklch(0.96 0 0);
-  --card: oklch(0.12 0.006 264);
-  --card-foreground: oklch(0.96 0 0);
-  --popover: oklch(0.12 0.006 264);
-  --popover-foreground: oklch(0.96 0 0);
-  --primary: oklch(0.696 0.169 162.48);
-  --primary-foreground: oklch(0.08 0 0);
-  --secondary: oklch(0.17 0.006 264);
-  --secondary-foreground: oklch(0.96 0 0);
-  --muted: oklch(0.17 0.006 264);
-  --muted-foreground: oklch(0.60 0 0);
-  --accent: oklch(0.696 0.169 162.48 / 15%);
-  --accent-foreground: oklch(0.696 0.169 162.48);
-  --destructive: oklch(0.65 0.22 25);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.696 0.169 162.48);
-  --sidebar: oklch(0.10 0.005 264);
-  --sidebar-foreground: oklch(0.96 0 0);
-  --sidebar-primary: oklch(0.696 0.169 162.48);
-  --sidebar-primary-foreground: oklch(0.08 0 0);
-  --sidebar-accent: oklch(0.696 0.169 162.48 / 10%);
-  --sidebar-accent-foreground: oklch(0.696 0.169 162.48);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.696 0.169 162.48);
+  /* Borders / inputs */
+  --border: oklch(0 0 0 / 9%);
+  --input: oklch(0 0 0 / 8%);
+  --ring: oklch(0.59 0.17 162);
+  --radius: 0.75rem;
+  /* Sidebar */
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.12 0 0);
+  --sidebar-primary: oklch(0.59 0.17 162);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.59 0.17 162 / 8%);
+  --sidebar-accent-foreground: oklch(0.59 0.17 162);
+  --sidebar-border: oklch(0 0 0 / 8%);
+  --sidebar-ring: oklch(0.59 0.17 162);
 }
 
 @layer base {
@@ -110,50 +89,93 @@
   }
 }
 
-/* Glass morphism utility */
+/* ─── Apple-style glass (light) ──────────────────────────────────────────── */
 .glass {
-  background: oklch(1 0 0 / 4%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid oklch(1 0 0 / 10%);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .glass-card {
-  background: oklch(1 0 0 / 5%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid oklch(1 0 0 / 12%);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 20px rgba(0,0,0,0.05);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+/* ─── Custom scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: oklch(1 0 0 / 15%);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 99px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: oklch(1 0 0 / 25%);
-}
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.22); }
 
-/* Leaflet popup override */
+/* ─── Leaflet overrides (light) ───────────────────────────────────────────── */
 .leaflet-popup-content-wrapper {
-  background: oklch(0.12 0.006 264) !important;
-  color: oklch(0.96 0 0) !important;
-  border: 1px solid oklch(1 0 0 / 12%) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 32px oklch(0 0 0 / 40%) !important;
+  background: #ffffff !important;
+  color: #1d1d1f !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
 }
 .leaflet-popup-tip {
-  background: oklch(0.12 0.006 264) !important;
+  background: #ffffff !important;
 }
 .leaflet-popup-close-button {
-  color: oklch(0.60 0 0) !important;
+  color: #6e6e73 !important;
+  top: 10px !important;
+  right: 10px !important;
 }
 .leaflet-container {
-  background: oklch(0.10 0.005 264) !important;
+  background: #e8ecf1 !important;
+  font-family: inherit !important;
+}
+/* Leaflet default zoom controls — restyle for Apple look */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+.leaflet-control-zoom a {
+  background: #ffffff !important;
+  color: #1d1d1f !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #f5f5f7 !important;
+}
+.leaflet-attribution-flag { display: none !important; }
+.leaflet-control-attribution {
+  background: rgba(255,255,255,0.7) !important;
+  backdrop-filter: blur(8px) !important;
+  font-size: 9px !important;
+  color: #86868b !important;
+  border-radius: 8px 0 0 0 !important;
+}
+
+/* ─── Map marker animations ───────────────────────────────────────────────── */
+@keyframes markerPulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.marker-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  animation: markerPulse 1.6s ease-out infinite;
 }
