@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,13 +8,17 @@ import Header from "@/components/header";
 import RestaurantCard from "@/components/restaurant-card";
 import RestaurantDetailSheet from "@/components/restaurant-detail-sheet";
 import ScoreBadge from "@/components/score-badge";
+import { SidebarSkeleton, MapSkeleton } from "@/components/skeletons";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Restaurant, FilterState, VerdictFilter, CityFilter } from "@/lib/types";
 import { filterRestaurants, sortByScore } from "@/lib/restaurant-utils";
 import rawData from "@/data/restaurants.json";
 
-const MapView = dynamic(() => import("@/components/map-view"), { ssr: false });
+const MapView = dynamic(() => import("@/components/map-view"), {
+  ssr: false,
+  loading: () => <MapSkeleton />,
+});
 
 const ALL_RESTAURANTS = sortByScore(rawData as Restaurant[]);
 
@@ -29,6 +33,7 @@ const VERDICT_TABS: { value: VerdictFilter; label: string; score: number }[] = [
 const CITIES: CityFilter[] = ["all", "Toronto", "Hamilton", "Cambridge"];
 
 export default function ExplorePage() {
+  const [mounted, setMounted] = useState(false);
   const [selected, setSelected] = useState<Restaurant | null>(null);
   const [filters, setFilters] = useState<FilterState>({
     city: "all",
@@ -41,6 +46,9 @@ export default function ExplorePage() {
     () => filterRestaurants(ALL_RESTAURANTS, filters),
     [filters]
   );
+
+  // Show skeletons until client hydration is complete
+  useEffect(() => { setMounted(true); }, []);
 
   const handleSelect = useCallback((r: Restaurant) => {
     setSelected((prev) => (prev?.name === r.name ? null : r));
@@ -157,29 +165,35 @@ export default function ExplorePage() {
           </div>
 
           {/* Restaurant list */}
-          <div className="flex-1 overflow-y-auto p-2.5 space-y-1.5">
-            <AnimatePresence mode="popLayout">
-              {filtered.length === 0 ? (
-                <motion.div
-                  key="empty"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-center py-16 text-zinc-600 text-sm"
-                >
-                  No restaurants match your filters.
-                </motion.div>
-              ) : (
-                filtered.map((r, i) => (
-                  <RestaurantCard
-                    key={r.name}
-                    restaurant={r}
-                    selected={selected?.name === r.name}
-                    onClick={() => handleSelect(r)}
-                    index={i}
-                  />
-                ))
-              )}
-            </AnimatePresence>
+          <div className="flex-1 overflow-y-auto">
+            {!mounted ? (
+              <SidebarSkeleton count={5} />
+            ) : (
+              <div className="p-2.5 space-y-1.5">
+                <AnimatePresence mode="popLayout">
+                  {filtered.length === 0 ? (
+                    <motion.div
+                      key="empty"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-center py-16 text-zinc-600 text-sm"
+                    >
+                      No restaurants match your filters.
+                    </motion.div>
+                  ) : (
+                    filtered.map((r, i) => (
+                      <RestaurantCard
+                        key={r.name}
+                        restaurant={r}
+                        selected={selected?.name === r.name}
+                        onClick={() => handleSelect(r)}
+                        index={i}
+                      />
+                    ))
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
           </div>
 
           {/* Legend */}

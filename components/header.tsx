@@ -24,7 +24,7 @@ export default function Header() {
             <Utensils size={14} className="text-black" />
           </div>
           <span className="font-semibold text-sm tracking-tight">
-            Indie<span className="text-emerald-400">Eats</span>
+            sysFREE<span className="text-emerald-400">co</span>
           </span>
         </Link>
 

@@ -16,17 +16,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "IndieEats — Find restaurants that actually know their farmers",
-    template: "%s · IndieEats",
+    default: "sysFREEco — Find restaurants that actually know their farmers",
+    template: "%s · sysFREEco",
   },
   description:
     "Discover restaurants in Toronto, Hamilton, and the GTA that source independently — not from Sysco or big-box distributors.",
   keywords: ["farm to table Toronto", "local sourcing restaurant", "non-Sysco restaurant", "independent restaurant GTA"],
   openGraph: {
     type: "website",
-    title: "IndieEats",
+    title: "sysFREEco",
     description: "Discover restaurants that source independently in Toronto & the GTA.",
-    siteName: "IndieEats",
+    siteName: "sysFREEco",
   },
   robots: { index: true, follow: true },
 };

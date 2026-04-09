@@ -71,7 +71,7 @@
   --sidebar-ring: oklch(0.56 0.157 162.48);
 }
 
-/* Dark mode — default for IndieEats */
+/* Dark mode — default for sysFREEco */
 .dark {
   --background: oklch(0.08 0.004 264);
   --foreground: oklch(0.96 0 0);

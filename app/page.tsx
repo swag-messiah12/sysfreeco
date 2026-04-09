@@ -31,7 +31,7 @@ const HOW_IT_WORKS = [
   {
     icon: Shield,
     step: "03",
-    title: "Indie score",
+    title: "sysFREEco score",
     desc: "Each signal adds or subtracts from a score. Franchise keywords trigger a hard penalty.",
   },
 ];
@@ -135,7 +135,7 @@ export default function LandingPage() {
               variants={fadeUp}
               className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
             >
-              Sysco controls a third of North American restaurant supply. IndieEats
+              Sysco controls a third of North American restaurant supply. sysFREEco
               scans restaurant websites and scores them on independent sourcing signals
               — so you can eat with your values.
             </motion.p>

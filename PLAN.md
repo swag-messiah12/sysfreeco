@@ -1,4 +1,4 @@
-# IndieEats — Project Plan (SDLC)
+# sysFREEco — Project Plan (SDLC)
 
 > Living document. Update as the project evolves.
 
@@ -11,7 +11,7 @@ have no way of knowing whether a restaurant sources locally or from a centralize
 distributor. There is no public database, no certification visible at a glance, and
 no map-based discovery tool for the GTA/Hamilton area.
 
-**IndieEats** solves this with a scoring system built on observable signals: website
+**sysFREEco** solves this with a scoring system built on observable signals: website
 language, known local supplier mentions, and franchise/chain negative indicators.
 
 ---
@@ -215,7 +215,7 @@ Submit a restaurant for review.
 ### Landing page `/`
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  🥩 IndieEats            [Explore Map]  [Submit]        │  ← Header
+│  🥩 sysFREEco            [Explore Map]  [Submit]        │  ← Header
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
 │   ○ Toronto · Hamilton · GTA                            │  ← eyebrow

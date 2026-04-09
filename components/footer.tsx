@@ -10,7 +10,7 @@ export default function Footer() {
             <Utensils size={12} className="text-black" />
           </div>
           <span className="text-sm font-medium">
-            Indie<span className="text-emerald-400">Eats</span>
+            sysFREE<span className="text-emerald-400">co</span>
           </span>
           <span className="text-xs text-zinc-600 ml-2">
             · Open source · Toronto / GTA / Hamilton
