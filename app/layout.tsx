@@ -30,10 +30,6 @@ export const metadata: Metadata = {
     siteName: "sysFREEco",
   },
   robots: { index: true, follow: true },
-  // Correct AdSense meta tag — visible to Google crawler in raw HTML
-  other: {
-    "google-adsense-account": "ca-pub-7259657349367819",
-  },
 };
 
 export default function RootLayout({
@@ -44,14 +40,20 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <head>
-        {/* AdSense script — beforeInteractive ensures it's in the initial HTML */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7259657349367819"
-          crossOrigin="anonymous"
-        />
-      </head>
+      {/*
+        React 19 hoists <meta> and <script> to <head> automatically.
+        google-adsense-account is the correct meta name for AdSense verification
+        (google-site-verification is for Search Console — different product).
+      */}
+      <meta name="google-adsense-account" content="ca-pub-7259657349367819" />
+
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7259657349367819"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
+
       <body className="min-h-screen bg-background text-foreground">
         {children}
       </body>
